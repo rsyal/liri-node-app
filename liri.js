@@ -51,12 +51,15 @@ function myTweets() {
     }
 
 
-function spotifyThisSong(search) {
+function spotifyThisSong() {
 var spotify = new Spotify(keys.spotify);
     var userInput = process.argv.slice(3).join(" ");
     if(!userInput) {
-        userInput = "The Sign Ace of Base";
-        
+        if (!search) {
+            search = "The Sign Ace of Base";
+        }
+        userInput = search;
+ 
     }
             console.log(userInput);
     spotify.search({ 
@@ -109,7 +112,7 @@ function movieThis () {
 function doWhatItSays(){
   fs.readFile("random.txt", "utf8", function(err, data) {
     if (err) {
-      return console.log("Whoops");
+     
     } else {
         var command = data.toString().split(",");
         input = command[0];
